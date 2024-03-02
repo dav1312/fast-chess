@@ -22,29 +22,10 @@ class Fastchess : public IOutput {
         const Elo elo(stats.wins, stats.losses, stats.draws);
 
         std::stringstream ss;
-        ss << "Score of "         //
-           << first               //
-           << " vs "              //
-           << second              //
-           << ": "                //
-           << stats.wins          //
-           << " - "               //
-           << stats.losses        //
-           << " - "               //
-           << stats.draws         //
-           << " [] "              //
-           << current_game_count  //
-           << "\n";
 
-        ss << "Elo difference: "                                        //
-           << elo.getElo()                                              //
-           << ", "                                                      //
-           << "LOS: "                                                   //
-           << Elo::getLos(stats.wins, stats.losses)                     //
-           << ", "                                                      //
-           << "DrawRatio: "                                             //
-           << Elo::getDrawRatio(stats.wins, stats.losses, stats.draws)  //
-           << "\n";
+        ss << first << " vs " << second << ": +" << stats.wins << " -" << stats.losses << " =" << stats.draws << " (" << current_game_count << ")\n";
+
+        ss << "Elo: " << elo.getElo() << " | LOS: " << Elo::getLos(stats.wins, stats.losses) << " | DrawRatio: " << Elo::getDrawRatio(stats.wins, stats.losses, stats.draws) << " | ScoreRatio: " << Elo::getScoreRatio(stats.wins, stats.losses, stats.draws) << "\n";
 
         std::cout << ss.str();
     }

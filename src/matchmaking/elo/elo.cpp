@@ -78,4 +78,11 @@ std::string Elo::getDrawRatio(int wins, int losses, int draws) noexcept {
     return ss.str();
 }
 
+std::string Elo::getScoreRatio(int wins, int losses, int draws) noexcept {
+    const double n = wins + losses + draws;
+    std::stringstream ss;
+    ss << std::fixed << std::setprecision(2) << ((wins + draws / 2.0) / n) * 100.0 << " %";
+    return ss.str();
+}
+
 }  // namespace fast_chess
